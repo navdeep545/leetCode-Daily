@@ -12,7 +12,7 @@ public:
         if(!head || !head->next) return head ;
         ListNode *temp1 = head ;
         ListNode *temp2 = head->next ;
-        temp1->next = NULL ;
+        temp1->next = nullptr ;
         while(temp1 && temp2)
         {
             ListNode *temp3 = temp2->next ;
