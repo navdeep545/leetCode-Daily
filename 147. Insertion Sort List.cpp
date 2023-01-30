@@ -10,14 +10,25 @@ class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
         if(!head || !head->next) return head ;
-        vector<int> v ;
-        for(ListNode *temp1 = head ;temp1;temp1 = temp1->next)
-        v.push_back(temp1->val) ;
-        sort(v.begin(),v.end()) ;
         ListNode *temp1 = head ;
-        for(int i=0;i<v.size();i++){
-            temp1->val = v[i] ;
-            temp1 = temp1->next ;
+        while(temp1 && temp1->next)
+        {
+            ListNode *temp2 = head ;
+            ListNode *temp3 = temp1->next ;
+            int curr = temp3->val ;
+            while(curr > temp2->val)
+                temp2 = temp2->next ;
+                if(temp2 != temp3){
+                    temp1->next = temp1->next->next ;
+                    temp3->next = temp2->next ;
+                    temp2->next = temp3 ;
+                    temp3->val = temp2->val ;
+                    temp2->val = curr ;
+                }
+            if(temp1->next && temp1->next->val >= temp1->val)
+            // {
+                temp1 = temp1->next ;
+            // }
         }
         return head ;
     }
